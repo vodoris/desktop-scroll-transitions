@@ -14,11 +14,11 @@ const App = () => {
     // const evenOrOdd = (step % 2  == 0) ? "even" : "odd";
     switch (step) {
       case 1:
-        return 'translate3d(0px, 145%, 0px) rotate3d(0, 0, 1, 180deg) scale(5, 1)';
+        return 'translate3d(0px, 150%, 0px) rotate3d(0, 0, 1, 180deg) scale(5, 1)';
       case 2:
-        return 'translate3d(0px, 145%, 0px) rotate3d(0, 0, 1, 360deg) scale(5, 1)';
+        return 'translate3d(0px, 150%, 0px) rotate3d(0, 0, 1, 360deg) scale(5, 1)';
       case 3:
-        return 'translate3d(0px, 145%, 0px) rotate3d(0, 0, 1, 540deg) scale(5, 1)';
+        return 'translate3d(0px, 150%, 0px) rotate3d(0, 0, 1, 630deg) scale(5, 1)';
       case 4:
         return 'translate3d(0px, 0%, 0px) rotate3d(0, 0, 1, 720deg) scale(1, 1)';
       default:
@@ -59,47 +59,23 @@ const App = () => {
   }
 
   return (
-    <div className="vh-100" onWheel={onWheel}>
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <div className="text-warning mt-5">
-              <h2>Scroll Enabled: {ticker ? 'true' : 'false'}</h2>
-              <h2>Step: {step}</h2>
+    <div className={`body-wrapper ${step > 0 ? 'frame-zoom' : ''} vh-100`} onWheel={onWheel}>
+      <div className="d-flex h-100 w-100">
+        <div className="bg__name-wrapper">
+          <div className={`bg__name-container w-100 h-100`}>
+            <div className="h-33 d-flex flex-column justify-content-center">
+              <h4 className="display-1 fst-italic mb-0">Matthew</h4>
+            </div>
+            <div className="h-33 d-flex flex-column justify-content-center align-items-center">
+              <h4 className="display-1 fst-italic mb-0 text-center">Ryan</h4>
+            </div>
+            <div className="h-33 d-flex flex-column justify-content-center align-items-end">
+              <h4 className="display-1 fst-italic mb-0">Gilbert</h4>
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col">
-            <h1 className="display-4 typing-effect-input">
-              I am <em>
-                <ReactTypingEffect
-                  text={[
-                    "innovative.",
-                    "passionate.",
-                    "creative.",
-                    "motivated.",
-                    "ambitious.",
-                    "efficient.",
-                    "agile.",
-                    "reliable.",
-                    "driven."
-                  ]}
-                  speed={200}
-                  eraseSpeed={100}
-                  eraseDelay={1000}
-                  typingDelay={1000}
-                />
-              </em>
-            </h1>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            <div
-              className="bg-test" style={transitionBlockStyle}>
-            </div>
-          </div>
+        <div
+          className="bg-transition" style={transitionBlockStyle}>
         </div>
       </div>
     </div>
