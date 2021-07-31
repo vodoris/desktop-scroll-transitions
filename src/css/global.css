@@ -23,7 +23,7 @@ body {
   overflow: hidden;
 }
 
-.body-wrapper {
+.ele__body-wrapper {
   padding: 15px;
   transition-property: padding;
   transition-duration: 1s;
@@ -50,11 +50,11 @@ body {
 
 .bg-transition {
   position: absolute;
-  bottom: 100%;
+  bottom: 109%;
   left: 55px;
   z-index: 1;
   width: calc(100% - 110px);
-  height: 105%;
+  height: 120%;
   background: white;
   backface-visibility: hidden;
   transform-style: preserve-3d;
@@ -76,4 +76,35 @@ body {
 }
 .bg__name-container h4 {
   font-size: 10rem;
+}
+
+.ele__path-wrapper {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: -20%;
+  height: 100%;
+  width: 50px;
+  transition-property: right;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+}
+.ele__path-wrapper.activate {
+  right: 0%;
+}
+
+.ele__path {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.ele__path > .path-icon {
+  margin: 5px 0px;
+  transition-property: margin;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+}
+.ele__path > .path-icon.active {
+  margin: 40px 0px;
 }
