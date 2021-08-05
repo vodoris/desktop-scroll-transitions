@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import ReactDOM from "react-dom";
-import ReactTypingEffect from 'react-typing-effect';
+// import ReactTypingEffect from 'react-typing-effect';
 // import { Link, Element } from 'react-scroll';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircle, faCircleNotch } from '@fortawesome/free-solid-svg-icons'
@@ -9,6 +9,7 @@ const App = () => {
   const [step, setStep] = useState(0);
   const [ticker, setTicker] = useState(false);
   const tickerDelay = 2000;
+  let touchStart;
 
   const setBlockTransition = (step) => {
     // const evenOrOdd = (step % 2  == 0) ? "even" : "odd";
@@ -18,7 +19,7 @@ const App = () => {
       case 2:
         return 'translate3d(0px, 150%, 0px) rotate3d(0, 0, 1, 360deg) scale(5, 1)';
       case 3:
-        return 'translate3d(0px, 150%, 0px) rotate3d(0, 0, 1, 630deg) scale(5, 1)';
+        return 'translate3d(0px, 150%, 0px) rotate3d(0, 0, 1, 540deg) scale(5, 1)';
       case 4:
         return 'translate3d(0px, 0%, 0px) rotate3d(0, 0, 1, 720deg) scale(5, 1)';
       default:
@@ -55,11 +56,23 @@ const App = () => {
     }
   }, [ticker]);
 
-  const onWheel = (e) => {
-    // early return if the ticker timeout is in progress
+  // mobile devices
+  const wrapperOnTouchStart = (e) => {
+    touchStart = e.touches[0].clientY;
+  }
+  const wrapperOnTouchMove = (e) => {
+    let touchEnd = e.changedTouches[0].clientY;
+    setPath(touchEnd, touchStart);
+  }
+
+  // desktops
+  const wrapperOnWheel = (e) => {
+    setPath(e.nativeEvent.wheelDelta);
+  }
+
+  const setPath = (startY, endY) => {
     if (!ticker === true) { return }
-    if (e.nativeEvent.wheelDelta > 0) {
-      // on the base step, so you can't go up
+    if (startY > (endY || 0)) {
       if (step !== 0) {
         setStep(step - 1);
         setTicker(false);
@@ -73,13 +86,26 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div className="ele__view-overflow-wrapper">
 
-      <div className={`ele__body-wrapper ${step > 0 ? 'frame-zoom' : ''} vh-100`} onWheel={onWheel}>
+      <div
+        className={`ele__view-interior-wrapper ${step > 0 ? 'frame-zoom' : ''} vh-100`}
+        onTouchStart={wrapperOnTouchStart}
+        onTouchMove={wrapperOnTouchMove}
+        onWheel={wrapperOnWheel}
+      >
         <div className="d-flex h-100 w-100">
-          <div className="bg__name-wrapper">
-            <div className={`bg__name-container w-100 h-100`}>
-              <div className="h-33 d-flex flex-column justify-content-center">
+          <div className="bg__text-wrapper">
+            <div className={`bg__text-container w-100 h-100`}>
+              <div className="bg__text-enter h-100 d-flex flex-column justify-content-center align-items-center">
+                <h1
+                  className={`display-1 text-white ${step > 0 ? 'ani__slide-out-right' : ''}`}
+                  onClick={() => setStep(1)}
+                >
+                  ENTER
+                </h1>
+              </div>
+              {/* <div className="h-33 d-flex flex-column justify-content-center">
                 <h4 className="display-1 fst-italic mb-0">Matthew</h4>
               </div>
               <div className="h-33 d-flex flex-column justify-content-center align-items-center">
@@ -87,11 +113,11 @@ const App = () => {
               </div>
               <div className="h-33 d-flex flex-column justify-content-center align-items-end">
                 <h4 className="display-1 fst-italic mb-0">Gilbert</h4>
-              </div>
+              </div> */}
             </div>
           </div>
           <div
-            className="bg-transition" style={transitionBlockStyle}>
+            className="bg-animation" style={transitionBlockStyle}>
           </div>
         </div>
       </div>

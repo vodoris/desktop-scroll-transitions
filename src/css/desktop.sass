@@ -1,0 +1,74 @@
+.bg-animation {
+  position: absolute;
+  bottom: 109%;
+  left: 55px;
+  z-index: 1;
+  width: calc(100% - 110px);
+  height: 120%;
+  background: white;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transform-origin: 50% 0 0;
+  transition-property: transform;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+}
+
+.bg__text-wrapper {
+  position: relative;
+  z-index: 0;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+}
+.bg__text-wrapper > .bg__text-container {
+  padding: 0px 20px;
+}
+.bg__text-container h4 {
+  font-size: 12rem;
+}
+.bg__text-container > .bg__text-enter > h1 {
+  font-size: calc(2.625rem + 4.5vw);
+  margin: 0;
+  position: absolute;
+  transition-property: all;
+  transition-duration: 1s;
+  padding: 0px 0px 16px 0px;
+  transition-timing-function: ease-out;
+}
+.bg__text-container > .bg__text-enter h1:hover {
+  padding: 0px 50px 16px;
+  font-size: calc(4.625rem + 4.5vw);
+  border-left: 1px solid white;
+  cursor: pointer
+}
+
+.ele__path-wrapper {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: -10%;
+  height: 100%;
+  width: 25px;
+  transition-property: right;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+}
+.ele__path-wrapper.activate {
+  right: 0%;
+}
+.ele__path {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.ele__path > .path-icon {
+  margin: 5px 0px;
+  transition-property: margin;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+}
+.ele__path > .path-icon.active {
+  margin: 40px 0px;
+}
