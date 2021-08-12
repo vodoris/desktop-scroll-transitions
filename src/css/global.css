@@ -16,7 +16,7 @@
 }
 
 .frame-zoom {
-  padding: 25px;
+  padding: 35px;
 }
 
 .h-33 {
@@ -30,4 +30,12 @@
   background: linear-gradient(to top, #FFFFFF 50%, #2E3786 0%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.invisible {
+  opacity: 0%;
+}
+
+.visible {
+  opacity: 100%;
 }

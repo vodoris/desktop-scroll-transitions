@@ -23,7 +23,21 @@
 }
 .bg__text-wrapper > .bg__text-container {
   padding: 0px 20px;
+  position: absolute;
 }
+
+h1.bg-text {
+  transition-property: all;
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+}
+h4.bg-text {
+  transition-property: all;
+  transition-duration: 1s;
+  transition-delay: 1s;
+  transition-timing-function: ease-out;
+}
+
 .bg__text-container h4 {
   font-size: 12rem;
 }
@@ -49,7 +63,7 @@
   top: 0;
   right: -10%;
   height: 100%;
-  width: 25px;
+  width: 35px;
   transition-property: right;
   transition-duration: 1s;
   transition-timing-function: ease-out;
