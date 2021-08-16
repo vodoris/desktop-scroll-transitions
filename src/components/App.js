@@ -2,32 +2,16 @@ import React, { useState, useEffect } from "react";
 // import ReactDOM from "react-dom";
 // import ReactTypingEffect from 'react-typing-effect';
 // import { Link, Element } from 'react-scroll';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircle, faCircleNotch } from '@fortawesome/free-solid-svg-icons'
 import BackgroundText from './BackgroundText';
-import BackgroundAnimation from "./BackgroundAnimation";
+import BackgroundAnimation from './BackgroundAnimation';
+import Page from './Page';
+import Path from './Path';
 
 const App = () => {
   const [step, setStep] = useState(0);
   const [ticker, setTicker] = useState(false);
   const tickerDelay = 2000;
   let touchStart;
-
-  const runIcons = () => {
-    let icons = [];
-
-    for (let i = 0; i < 5; i++) {
-      let icon = <FontAwesomeIcon
-        key={`icon${i}`}
-        icon={step === i ? faCircleNotch : faCircle}
-        color="black"
-        className={`path-icon ${step === i ? 'active' : ''}`}
-      />
-      icons.push(icon);
-    }
-
-    return icons;
-  }
 
   useEffect(() => {
     const ticketId = setTimeout(() => {
@@ -78,16 +62,19 @@ const App = () => {
         onWheel={wrapperOnWheel}
       >
         <div className={`d-flex h-100 w-100`}>
-          <BackgroundText step={step} setStep={setStep} />
+          <div className={`bg__text-wrapper`}>
+            {
+              step === 0
+                ? <BackgroundText setStep={setStep} />
+                : false
+            }
+          </div>
+          <div className={`page`}>
+            <Page step={step} />
+          </div>
           <BackgroundAnimation step={step} />
         </div>
-      </div>
-      <div className={`ele__path-wrapper ${step > 0 ? 'activate' : ''}`}>
-        <div className={`ele__path`}>
-          {
-            runIcons()
-          }
-        </div>
+        <Path step={step} />
       </div>
 
     </div>
