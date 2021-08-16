@@ -1,6 +1,5 @@
 {
-  "homepage": "http://vodoris.github.io/portfolio",
-  "name": "portfolio",
+  "name": "desktop-scroll-transitions",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
