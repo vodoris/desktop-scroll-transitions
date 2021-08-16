@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 // import { Link, Element } from 'react-scroll';
 import BackgroundText from './BackgroundText';
 import BackgroundAnimation from './BackgroundAnimation';
-import Page from './Page';
 import Path from './Path';
 
 const App = () => {
@@ -68,9 +67,6 @@ const App = () => {
                 ? <BackgroundText setStep={setStep} />
                 : false
             }
-          </div>
-          <div className={`page`}>
-            <Page step={step} />
           </div>
           <BackgroundAnimation step={step} />
         </div>
